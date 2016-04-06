@@ -6,7 +6,7 @@ LDFLAGS= c:/soft/lua/lib/lua51.dll
 
 # == END OF USER SETTINGS. NO NEED TO CHANGE ANYTHING BELOW THIS LINE =========
 
-TARGET = mylib.dll
+TARGET = t.dll
 ALL_O = test.o
 
 all: $(TARGET)

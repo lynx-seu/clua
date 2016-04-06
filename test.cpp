@@ -9,20 +9,26 @@
 #include <lualib.h>
 // }
 
-static int l_sin(lua_State *L)
+static int test(lua_State *L)
 {
-	double d = luaL_checknumber(L, 1);
-	lua_pushnumber(L, sin(d));
+	int n = luaL_getn(L, 1);
+
+	for (int i = 1; i<=n; ++i)
+	{
+		lua_pushnumber(L, i);
+	}
+
 	return 1;
 }
 
-static const struct luaL_reg mylib [] = {
-	{"sin", l_sin},
+
+static const struct luaL_reg arraylib [] = {
+	{"test", test},
 	{NULL, NULL}
 };
 
-extern "C" int luaopen_mylib(lua_State *L)
+extern "C" int luaopen_t(lua_State *L)
 {
-	luaL_register(L, "mylib", mylib);
+	luaL_register(L, "t", arraylib);
 	return 1;
 }
