@@ -7,4 +7,5 @@ local ttt = {
 	{10,11,15},
 }
 
-print(t.test(ttt))
+local aa = t.test(ttt)
+print(aa)
