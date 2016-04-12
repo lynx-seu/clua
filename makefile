@@ -1,7 +1,7 @@
 #general
 CC = g++
 RM = rm -rf
-CPPFLAGS = -g -O2 -std=c++11 -Ic:/soft/lua/include -fpic 
+CPPFLAGS = -g -O2 -std=c++11 -Ic:/soft/lua/include 
 LDFLAGS= c:/soft/lua/lib/lua51.dll
 
 # == END OF USER SETTINGS. NO NEED TO CHANGE ANYTHING BELOW THIS LINE =========

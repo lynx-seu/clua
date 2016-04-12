@@ -7,5 +7,11 @@ local ttt = {
 	{10,11,15},
 }
 
-local aa = t.test(ttt)
+local aa = t.test(ttt, 4)
 print(aa)
+
+
+for k, v in pairs(aa) do
+	print(k, v)
+end
+

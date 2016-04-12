@@ -3,12 +3,13 @@
 #include <string.h>
 #include <math.h>
 #include <vector>
+#include <iostream>
 
-// extern "C" {
+extern "C" {
 #include <lua.h>
 #include <lauxlib.h>
 #include <lualib.h>
-// }
+}
 
 static void stack_dump(lua_State *L)
 {
@@ -39,34 +40,32 @@ static void stack_dump(lua_State *L)
 static int test(lua_State *L)
 {
 	std::vector<int> vi;
-	int n = luaL_getn(L, 1);
-	int c = 0;
+	int n=luaL_getn(L, 1), c=0;
 
-int i=1;
-	// for (int i = 1; i<=n; ++i)
-	// {
+	for (int i = 1; i<=n; ++i)
+	{
 		lua_pushnumber(L, i);
-		stack_dump(L);
 		lua_gettable(L , 1);
-		stack_dump(L);
 		c = luaL_getn(L, -1);
-	// 	for (int j=1; j<=c; j++) 
-	// 	{
-	// 		lua_pushnumber(L, j);
-	// 		lua_gettable(L, -2);
-	// 		// int v = luaL_checknumber(L, -1);
-	// 		// vi.push_back(v);
-	// 		lua_pop(L, 2);
-	// 	}
-	// 	lua_pop(L, 2);
-	// }
+		for (int j=1; j<=c; j++) 
+		{
+			lua_pushnumber(L, j);
+			lua_gettable(L, -2);
+			int v = luaL_checknumber(L, -1);
+			vi.push_back(v);
+			lua_pop(L, 1);
+		}
+		lua_pop(L, 1);
+	}
 
-		lua_pushnumber(L, 3);
-		stack_dump(L);
-		lua_gettable(L, -2);
-		stack_dump(L);
+	lua_newtable(L);
 
-
+	for (int i=0; i<vi.size(); i++)
+	{
+		lua_pushnumber(L, i+1);
+		lua_pushnumber(L, vi[i]);
+		lua_settable(L, -3);
+	}
 
 	return 1;
 }
